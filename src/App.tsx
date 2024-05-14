@@ -28,7 +28,7 @@ const App: React.FC = () => {
   return (
     <div>
       <h1>Grafo Interativo</h1>
-      <BatchInput setGraphData={() => setGraphData} />
+      <BatchInput setGraphData={setGraphData} graphData={graphData} />
       <DisplayGraph />
       <GraphInfo graphData={graphData} />
     </div>

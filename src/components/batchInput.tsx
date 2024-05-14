@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import LoadGraph from "./loadGraph";
+import { SigmaContainer } from "@react-sigma/core";
+const sigmaStyle = { height: "100vh", width: "50vw" };
 
 interface NodeData {
   id: string;
@@ -20,9 +23,10 @@ interface GraphData {
 
 interface BatchInputProps {
   setGraphData: React.Dispatch<React.SetStateAction<GraphData>>;
+  graphData: GraphData;
 }
 
-export const BatchInput: React.FC<BatchInputProps> = ({ setGraphData }) => {
+export const BatchInput: React.FC<BatchInputProps> = ({ setGraphData, graphData }) => {
   const [batchInput, setBatchInput] = useState<string>("");
 
   const handleBatchInput = () => {
@@ -46,6 +50,7 @@ export const BatchInput: React.FC<BatchInputProps> = ({ setGraphData }) => {
   };
 
   return (
+    <>
     <div>
       <textarea
         value={batchInput}
@@ -54,5 +59,9 @@ export const BatchInput: React.FC<BatchInputProps> = ({ setGraphData }) => {
       />
       <button onClick={handleBatchInput}>Inserir em Lote</button>
     </div>
+    <SigmaContainer style={sigmaStyle} className="flex w-full">
+        <LoadGraph graphData={graphData} />
+      </SigmaContainer>
+    </>
   );
 };
