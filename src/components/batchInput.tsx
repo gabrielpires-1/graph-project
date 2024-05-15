@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-import LoadGraph from "./loadGraph";
-import { SigmaContainer } from "@react-sigma/core";
-const sigmaStyle = { height: "100vh", width: "50vw" };
 
 interface NodeData {
   id: string;
@@ -23,10 +20,9 @@ interface GraphData {
 
 interface BatchInputProps {
   setGraphData: React.Dispatch<React.SetStateAction<GraphData>>;
-  graphData: GraphData;
 }
 
-export const BatchInput: React.FC<BatchInputProps> = ({ setGraphData, graphData }) => {
+export const BatchInput: React.FC<BatchInputProps> = ({ setGraphData }) => {
   const [batchInput, setBatchInput] = useState<string>("");
 
   const handleBatchInput = () => {
@@ -50,18 +46,19 @@ export const BatchInput: React.FC<BatchInputProps> = ({ setGraphData, graphData 
   };
 
   return (
-    <>
-    <div>
+    <div className="p-4 bg-white rounded shadow-md w-1/2">
       <textarea
+        className="w-full p-2 border rounded mb-2"
         value={batchInput}
         onChange={(e) => setBatchInput(e.target.value)}
         placeholder="Formato: node A\nnode B\nedge A B"
       />
-      <button onClick={handleBatchInput}>Inserir em Lote</button>
+      <button 
+        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+        onClick={handleBatchInput}
+      >
+        Inserir em Lote
+      </button>
     </div>
-    <SigmaContainer style={sigmaStyle} className="flex w-full">
-        <LoadGraph graphData={graphData} />
-      </SigmaContainer>
-    </>
   );
 };

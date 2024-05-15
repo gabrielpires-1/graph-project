@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-import { SigmaContainer } from "@react-sigma/core";
 import "@react-sigma/core/lib/react-sigma.min.css";
-import LoadGraph from "./loadGraph";
-
-const sigmaStyle = { height: "100vh", width: "50vw" };
 
 interface NodeData {
   id: string;
@@ -23,8 +19,11 @@ interface GraphData {
   edges: EdgeData[];
 }
 
-const DisplayGraph: React.FC = () => {
-  const [graphData, setGraphData] = useState<GraphData>({ nodes: [], edges: [] });
+interface DisplayGraphProps {
+  setGraphData: React.Dispatch<React.SetStateAction<GraphData>>;
+}
+
+const DirectInput: React.FC<DisplayGraphProps> = ({ setGraphData }) => {
   const [nodeName, setNodeName] = useState<string>("");
   const [edgeSource, setEdgeSource] = useState<string>("");
   const [edgeTarget, setEdgeTarget] = useState<string>("");
@@ -47,35 +46,46 @@ const DisplayGraph: React.FC = () => {
   };
 
   return (
-    <div className="flex">
-      <div className="w-[50vw] h-[100vh]">
+    <div className="p-4 bg-white rounded shadow-md w-1/2">
+      <div className="mb-2">
         <input
+          className="w-full p-2 border rounded mb-2"
           type="text"
           value={nodeName}
           onChange={(e) => setNodeName(e.target.value)}
           placeholder="Nome do Vértice"
         />
-        <button onClick={handleAddNode}>Adicionar Vértice</button>
-
+        <button 
+          className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700"
+          onClick={handleAddNode}
+        >
+          Adicionar Vértice
+        </button>
+      </div>
+      <div className="mb-2">
         <input
+          className="w-full p-2 border rounded mb-2"
           type="text"
           value={edgeSource}
           onChange={(e) => setEdgeSource(e.target.value)}
           placeholder="Origem da Aresta"
         />
         <input
+          className="w-full p-2 border rounded mb-2"
           type="text"
           value={edgeTarget}
           onChange={(e) => setEdgeTarget(e.target.value)}
           placeholder="Destino da Aresta"
         />
-        <button onClick={handleAddEdge}>Adicionar Aresta</button>
+        <button 
+          className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700"
+          onClick={handleAddEdge}
+        >
+          Adicionar Aresta
+        </button>
       </div>
-      <SigmaContainer style={sigmaStyle} className="flex w-full">
-        <LoadGraph graphData={graphData} />
-      </SigmaContainer>
     </div>
   );
 };
 
-export default DisplayGraph;
+export default DirectInput;

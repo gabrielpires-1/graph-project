@@ -12,6 +12,7 @@
   "dependencies": {
     "@react-sigma/core": "^4.0.2",
     "graphology": "^0.25.4",
+    "graphology-shortest-path": "^2.1.0",
     "graphology-types": "^0.24.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
