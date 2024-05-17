@@ -28,6 +28,7 @@ interface GraphData {
 interface GraphInfoProps {
   graphData: GraphData;
   isDirected: boolean;
+  setGraphData: React.Dispatch<React.SetStateAction<GraphData>>;
 }
 
 interface LoadGraphProps {
@@ -60,7 +61,7 @@ const LoadGraph: React.FC<LoadGraphProps> = ({ graphData, isDirected }) => {
   return null;
 };
 
-export const GraphInfo: React.FC<GraphInfoProps> = ({ graphData, isDirected }) => {
+export const GraphInfo: React.FC<GraphInfoProps> = ({ graphData, isDirected, setGraphData }) => {
   const graph = new Graph({ type: isDirected ? "directed" : "undirected" });
   graphData.nodes.forEach((node) => graph.addNode(node.id));
   graphData.edges.forEach((edge) => graph.addEdge(edge.source, edge.target));
@@ -87,6 +88,10 @@ export const GraphInfo: React.FC<GraphInfoProps> = ({ graphData, isDirected }) =
 
   const areNodesAdjacent = (node1: string, node2: string) => {
     return graph.hasEdge(node1, node2);
+  };
+
+  const handleResetGraph = () => {
+    setGraphData({ nodes: [], edges: [] });
   };
 
   const [vertex1, setVertex1] = useState<string>("");
@@ -155,9 +160,17 @@ export const GraphInfo: React.FC<GraphInfoProps> = ({ graphData, isDirected }) =
           />
           <button
             className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700"
-            onClick={() => alert(areNodesAdjacent(vertex1, vertex2) ? "Os vértices são adjacentes" : "Os vértices não são adjacentes")}
+            onClick={() => alert((areNodesAdjacent(vertex1, vertex2) || areNodesAdjacent(vertex2, vertex1)) ? "Os vértices são adjacentes" : "Os vértices não são adjacentes")}
           >
             Verificar Adjacência
+          </button>
+        </div>
+        <div className="mt-4">
+          <button
+            className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700"
+            onClick={handleResetGraph}
+          >
+            Resetar Grafo
           </button>
         </div>
       </div>

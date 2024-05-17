@@ -1,3 +1,4 @@
+// App.tsx
 import React, { useState } from "react";
 import DirectInput from "./components/directInput";
 import { GraphInfo } from "./components/graphInfo";
@@ -38,11 +39,15 @@ const App: React.FC = () => {
       >
         {isDirected ? "Mudar para Grafo Não Direcionado" : "Mudar para Grafo Direcionado"}
       </button>
-      <div className="w-full flex justify-between mb-4">
-        <BatchInput setGraphData={setGraphData} />
-        <DirectInput setGraphData={setGraphData} />
+      <div className="w-full flex">
+        <div className="w-2/3">
+          <GraphInfo graphData={graphData} isDirected={isDirected} setGraphData={setGraphData} />
+        </div>
+        <div className="w-1/3 flex flex-col">
+          <BatchInput setGraphData={setGraphData} />
+          <DirectInput setGraphData={setGraphData} />
+        </div>
       </div>
-      <GraphInfo graphData={graphData} isDirected={isDirected} />
     </div>
   );
 };
