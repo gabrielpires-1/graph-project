@@ -46,7 +46,7 @@ export const BatchInput: React.FC<BatchInputProps> = ({ setGraphData }) => {
   };
 
   return (
-    <div className="p-4 bg-white rounded shadow-md w-1/2">
+    <div>
       <textarea
         className="w-full p-2 border rounded mb-2"
         value={batchInput}
@@ -62,3 +62,5 @@ export const BatchInput: React.FC<BatchInputProps> = ({ setGraphData }) => {
     </div>
   );
 };
+
+export default BatchInput;

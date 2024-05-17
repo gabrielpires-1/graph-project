@@ -46,7 +46,7 @@ const DirectInput: React.FC<DisplayGraphProps> = ({ setGraphData }) => {
   };
 
   return (
-    <div className="p-4 bg-white rounded shadow-md w-1/2">
+    <div>
       <div className="mb-2">
         <input
           className="w-full p-2 border rounded mb-2"
