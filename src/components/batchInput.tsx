@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Button } from "./ui/button";
 
 interface NodeData {
   id: string;
@@ -53,12 +54,11 @@ export const BatchInput: React.FC<BatchInputProps> = ({ setGraphData }) => {
         onChange={(e) => setBatchInput(e.target.value)}
         placeholder="Formato: node A\nnode B\nedge A B"
       />
-      <button 
-        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+      <Button 
         onClick={handleBatchInput}
       >
         Inserir em Lote
-      </button>
+      </Button>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "@react-sigma/core/lib/react-sigma.min.css";
+import { Button } from "./ui/button";
 
 interface NodeData {
   id: string;
@@ -55,12 +56,11 @@ const DirectInput: React.FC<DisplayGraphProps> = ({ setGraphData }) => {
           onChange={(e) => setNodeName(e.target.value)}
           placeholder="Nome do Vértice"
         />
-        <button 
-          className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700"
+        <Button 
           onClick={handleAddNode}
         >
           Adicionar Vértice
-        </button>
+        </Button>
       </div>
       <div className="mb-2">
         <input
@@ -77,12 +77,13 @@ const DirectInput: React.FC<DisplayGraphProps> = ({ setGraphData }) => {
           onChange={(e) => setEdgeTarget(e.target.value)}
           placeholder="Destino da Aresta"
         />
-        <button 
-          className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700"
+
+        <Button
+          variant="default"
           onClick={handleAddEdge}
         >
           Adicionar Aresta
-        </button>
+        </Button>
       </div>
     </div>
   );

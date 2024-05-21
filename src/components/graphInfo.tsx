@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Graph from "graphology";
 import "@react-sigma/core/lib/react-sigma.min.css";
+import { Button } from "./ui/button";
 
 
 interface NodeData {
@@ -74,8 +75,8 @@ export const GraphInfo: React.FC<GraphInfoProps> = ({ graphData, isDirected, set
           id="vertex"
           className="w-full p-2 border rounded mb-2"
         />
-        <button
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 mr-2"
+        <Button
+
           onClick={() => {
             const vertex = (document.getElementById("vertex") as HTMLInputElement).value;
             const adj = getNodeAdjacency(vertex);
@@ -87,9 +88,8 @@ export const GraphInfo: React.FC<GraphInfoProps> = ({ graphData, isDirected, set
           }}
         >
           Obter Adjacentes
-        </button>
-        <button
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+        </Button>
+        <Button
           onClick={() => {
             const vertex = (document.getElementById("vertex") as HTMLInputElement).value;
             const degree = getNodeDegree(vertex);
@@ -101,7 +101,7 @@ export const GraphInfo: React.FC<GraphInfoProps> = ({ graphData, isDirected, set
           }}
         >
           Obter Grau
-        </button>
+        </Button>
       </div>
       <div>
         <input
@@ -118,20 +118,19 @@ export const GraphInfo: React.FC<GraphInfoProps> = ({ graphData, isDirected, set
           onChange={(e) => setVertex2(e.target.value)}
           className="w-full p-2 border rounded mb-2"
         />
-        <button
-          className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700"
+        <Button
           onClick={() => alert((areNodesAdjacent(vertex1, vertex2) || areNodesAdjacent(vertex2, vertex1)) ? "Os vértices são adjacentes" : "Os vértices não são adjacentes")}
         >
           Verificar Adjacência
-        </button>
+        </Button>
       </div>
       <div className="mt-4">
-        <button
-          className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700"
+        <Button
+          variant="destructive"
           onClick={handleResetGraph}
         >
           Resetar Grafo
-        </button>
+        </Button>
       </div>
     </div>
   );

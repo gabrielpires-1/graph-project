@@ -44,12 +44,7 @@ const App: React.FC = () => {
         {isDirected ? "Mudar para Grafo Não Direcionado" : "Mudar para Grafo Direcionado"}
       </button>
       <div className="flex w-full">
-        <div className="w-3/4">
-          <SigmaContainer style={sigmaStyle} className="flex w-full">
-            <LoadGraph graphData={graphData} isDirected={isDirected} />
-          </SigmaContainer>
-        </div>
-        <div className="w-1/4 flex flex-col space-y-4">
+      <div className="w-1/4 flex flex-col space-y-4">
           <div className="p-4 bg-white rounded shadow-md w-full">
             <BatchInput setGraphData={setGraphData} />
           </div>
@@ -60,6 +55,12 @@ const App: React.FC = () => {
             <GraphInfo graphData={graphData} isDirected={isDirected} setGraphData={setGraphData} />
           </div>
         </div>
+        <div className="w-3/4">
+          <SigmaContainer style={sigmaStyle} className="flex w-full">
+            <LoadGraph graphData={graphData} isDirected={isDirected} />
+          </SigmaContainer>
+        </div>
+        
       </div>
     </div>
   );

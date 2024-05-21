@@ -1,4 +1,3 @@
-// LoadGraph.tsx
 import React, { useEffect, useState } from "react";
 import Graph from "graphology";
 import { useLoadGraph } from "@react-sigma/core";
